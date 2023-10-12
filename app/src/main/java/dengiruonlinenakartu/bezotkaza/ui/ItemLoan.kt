@@ -184,7 +184,7 @@ fun ItemLoan(
                     contentPadding = PaddingValues(vertical = 9.dp),
                     onClick = { openLink.launch(intent) }) {
                     Text(
-                        text = stringResource(id = R.string.more),
+                        text = stringResource(id = R.string.request),
                         style = TextStyle(
                             fontSize = 16.sp,
                             fontFamily = FontFamily(Font(R.font.roboto)),
