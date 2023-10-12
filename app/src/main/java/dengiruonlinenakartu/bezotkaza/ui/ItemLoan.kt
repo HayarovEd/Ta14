@@ -188,7 +188,7 @@ fun ItemLoan(
                         style = TextStyle(
                             fontSize = 16.sp,
                             fontFamily = FontFamily(Font(R.font.roboto)),
-                            fontWeight = FontWeight(400),
+                            fontWeight = FontWeight(900),
                             color = white
                         )
                     )
