@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Деньги на карту</string>
+    <string name="loans">Займы</string>
+    <string name="bet">Ставка</string>
+    <string name="age">Возраст</string>
+    <string name="amount">Сумма займа</string>
+    <string name="long_loan">Срок займа</string>
+    <string name="more">Подробнее</string>
+    <string name="request">Заявка</string>
 </resources>
