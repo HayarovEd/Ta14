@@ -12,15 +12,18 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -28,6 +31,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import dengiruonlinenakartu.bezotkaza.R
+import dengiruonlinenakartu.bezotkaza.ui.theme.blue
+import dengiruonlinenakartu.bezotkaza.ui.theme.grey
 
 @Composable
 fun BaseScreen(
@@ -39,47 +45,61 @@ fun BaseScreen(
     if (state.value.error!=null) {
         Toast.makeText(context, state.value.error, Toast.LENGTH_LONG).show()
     }
-    /*val colors = listOf(Rose, Orange)
+
     if (state.value.isLoading) {
-        Box(modifier = modifier
-            .fillMaxSize()
-            .background(color = Background)) {
+        Box(
+            modifier = modifier
+                .fillMaxSize()
+                .background(color = grey)
+        ) {
             CircularProgressIndicator(
                 modifier = modifier
                     .align(alignment = Alignment.Center)
                     .size(100.dp),
-                color = BackgroundCard
+                color = blue
             )
         }
     } else {
-        Column(
+        Box(
             modifier = modifier
                 .fillMaxSize()
-                .background(color = Background)
+                .background(color = grey)
         ) {
-            Text(
+            Icon(
                 modifier = modifier
-                    .fillMaxWidth()
-                    .background(brush = Brush.horizontalGradient(colors = colors))
-                    .padding(vertical = 18.dp),
-                textAlign = TextAlign.Center,
-                color = White,
-                text = stringResource(id = R.string.name),
-                fontSize = 18.sp,
-                fontFamily = FontFamily(Font(R.font.montserrat)),
-                fontWeight = FontWeight(800)
+                    .align(alignment = Alignment.TopEnd)
+                    .padding(top = 20.dp, end = 25.dp),
+                imageVector = ImageVector.vectorResource(id = R.drawable.ring),
+                tint = blue,
+                contentDescription = "star"
             )
-            Spacer(modifier = modifier.height(30.dp))
-            LazyColumn(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 25.dp),
-                verticalArrangement = Arrangement.spacedBy(30.dp)
+            Column(
+                modifier = modifier.fillMaxWidth()
             ) {
-                items(state.value.moneyList) { loan ->
-                    ItemLoan(loan = loan)
+                Text(
+                    modifier = modifier
+                        .fillMaxWidth()
+                        .padding(top = 20.dp),
+                    textAlign = TextAlign.Center,
+                    color = blue,
+                    text = stringResource(id = R.string.loans),
+                    fontSize = 24.sp,
+                    fontFamily = FontFamily(Font(R.font.roboto)),
+                    fontWeight = FontWeight(900)
+                )
+                Spacer(modifier = modifier.height(30.dp))
+                LazyColumn(
+                    modifier = modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 18.dp),
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    items(state.value.moneyList) { loan ->
+                        ItemLoan(loan = loan)
+                    }
                 }
             }
         }
-    }*/
+
+    }
 }

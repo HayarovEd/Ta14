@@ -25,8 +25,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
@@ -35,7 +33,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -45,20 +43,11 @@ import dengiruonlinenakartu.bezotkaza.ui.theme.blue
 import dengiruonlinenakartu.bezotkaza.ui.theme.darkGrey
 import dengiruonlinenakartu.bezotkaza.ui.theme.white
 import dengiruonlinenakartu.bezotkaza.ui.theme.yellow
-@Preview
+
 @Composable
 fun ItemLoan(
     modifier: Modifier = Modifier,
-    loan: Loan = Loan(
-        age = "18-75 лет",
-        daysInfo = "7-30 дней",
-        imageUrl = "",
-        isFavorite = false,
-        percent = "0-1%",
-        rang = 3.5,
-        sumOne = "1000-30000 грн",
-        url = ""
-    )
+    loan: Loan
 ) {
     val openLink = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult()
@@ -99,13 +88,13 @@ fun ItemLoan(
             modifier = modifier
                 .fillMaxWidth()
         ) {
-           /* AsyncImage(
+           AsyncImage(
                 modifier = modifier
                     .width(170.dp),
                 model = loan.imageUrl,
                 contentScale = ContentScale.FillWidth,
                 contentDescription = ""
-            )*/
+            )
             Spacer(modifier = modifier.height(12.dp))
             Divider(
                 modifier = modifier.fillMaxWidth(),
@@ -167,11 +156,11 @@ fun ItemLoan(
             ) {
                 Button(
                     modifier = modifier
-                        .weight(1f)
-                        .clip(shape = RoundedCornerShape(10.dp)),
+                        .weight(1f),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = white
                     ),
+                    shape = RoundedCornerShape(10.dp),
                     contentPadding = PaddingValues(vertical = 9.dp),
                     onClick = { openLink.launch(intent) }) {
                     Text(
@@ -187,11 +176,11 @@ fun ItemLoan(
                 Spacer(modifier = modifier.width(15.dp))
                 Button(
                     modifier = modifier
-                        .weight(1f)
-                        .clip(shape = RoundedCornerShape(10.dp)),
+                        .weight(1f),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = yellow
                     ),
+                    shape = RoundedCornerShape(10.dp),
                     contentPadding = PaddingValues(vertical = 9.dp),
                     onClick = { openLink.launch(intent) }) {
                     Text(
@@ -217,41 +206,42 @@ fun ItemData(
     name: String,
     content: String
 ) {
-    Column(
+    Box(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 2.dp)
+        //.fillMaxWidth()
     ) {
-        Row(
-            verticalAlignment = Alignment.Top
+        Column(
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(start = 35.dp)
         ) {
-            Icon(
-                imageVector = icon,
-                tint = blue,
-                contentDescription = ""
+            Text(
+                text = name,
+                style = TextStyle(
+                    fontSize = 12.sp,
+                    fontFamily = FontFamily(Font(R.font.roboto)),
+                    fontWeight = FontWeight(400),
+                    color = blue
+                ),
+                textAlign =  TextAlign.Start
             )
-            Spacer(modifier = modifier.width(9.dp))
-            Column {
-                Text(
-                    text = name,
-                    style = TextStyle(
-                        fontSize = 12.sp,
-                        fontFamily = FontFamily(Font(R.font.roboto)),
-                        fontWeight = FontWeight(400),
-                        color = blue
-                    )
-                )
-                Spacer(modifier = modifier.height(5.dp))
-                Text(
-                    text = content,
-                    style = TextStyle(
-                        fontSize = 14.sp,
-                        fontFamily = FontFamily(Font(R.font.roboto)),
-                        fontWeight = FontWeight(900),
-                        color = blue
-                    )
-                )
-            }
+            Spacer(modifier = modifier.height(5.dp))
+            Text(
+                text = content,
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    fontFamily = FontFamily(Font(R.font.roboto)),
+                    fontWeight = FontWeight(900),
+                    color = blue
+                ),
+                textAlign =  TextAlign.Start
+            )
         }
+        Icon(
+            modifier = modifier.padding(top = 0.dp),
+            imageVector = icon,
+            tint = blue,
+            contentDescription = ""
+        )
     }
 }

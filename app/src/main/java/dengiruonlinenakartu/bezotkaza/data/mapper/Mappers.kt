@@ -20,6 +20,6 @@ fun List<LoanDto>.mapToLoan(): List<Loan> {
 }
 
 private fun randomRang(): Double {
-    val randomInt = Random.nextInt(51)
+    val randomInt = Random.nextInt(30,51)
     return randomInt.toDouble()/10
 }
