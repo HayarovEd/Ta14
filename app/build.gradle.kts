@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "dengiruonlinenakartu.bezotkaza"
+    namespace = "dengiruonlinenakartu.bezotkazas"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "dengiruonlinenakartu.bezotkaza"
+        applicationId = "dengiruonlinenakartu.bezotkazas"
         minSdk = 21
         targetSdk = 34
         versionCode = 1
